@@ -9,7 +9,6 @@ export const clienteService = {
 }
 
 function getClientes() {
-  debugger
   let axiosConfig = {
     headers: authHeader()
   }
@@ -17,12 +16,10 @@ function getClientes() {
     .then(handleResponse)
     .then(clientes => {
 
-      debugger
       console.log(clientes);
 
       return clientes;
     }).catch(error => {
-      debugger
       console.log(error);
     });
 }

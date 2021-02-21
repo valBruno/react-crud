@@ -2,6 +2,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import config from 'config';
 import { handleResponse } from '@/_helpers';
+import axios from "axios";
 
 const currentUserSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('currentUser')));
 
@@ -13,13 +14,9 @@ export const authenticationService = {
 };
 
 function login(login, senha) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ login, senha })
-    };
+    let payload = { login: login, senha: senha };
 
-    return fetch(`${config.apiUrl}/auth`, requestOptions)
+    return axios.post(`${config.apiUrl}/auth`, payload)
         .then(handleResponse)
         .then(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes

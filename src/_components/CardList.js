@@ -4,21 +4,21 @@ import React from "react";
 export const CardList = ({clientes}) => {
   const cardsArray = clientes.map(c => (
     <Card style={{flex: 1}}>
-      <Card.Body>
+      <Card.Body key={c.id}>
         <Card.Title>{c.nome}</Card.Title>
         <Card.Text>
-          <p>CPF: {c.cpf}</p>
-          <p>Email(s):
+          <div>CPF: {c.cpf}</div>
+          <div>Email(s):
             <ul>
-              {c.email.map(email => (<li>{email}</li>))}
+              {c.email.map((email, index) => (<li key={index}>{email}</li>))}
             </ul>
-          </p>
-          <p>Telefone(s):
+          </div>
+          <div>Telefone(s):
             <ul>
-              {c.telefone.map(telefone => (<li>{telefone.tipo} - {telefone.numero}</li>))}
+              {c.telefone.map((telefone, index) => (<li key={index}> {telefone.tipo} - {telefone.numero}</li>))}
             </ul>
-          </p>
-          <p>Endereço:
+          </div>
+          <div>Endereço:
             <ul style={{ listStyleType: "none" }}>
               <li>Cep: {c.endereco.cep}</li>
               <li>Logradouro: {c.endereco.logradouro}</li>
@@ -26,7 +26,7 @@ export const CardList = ({clientes}) => {
               <li>Cidade: {c.endereco.cidade}</li>
               <li>UF: {c.endereco.uf}</li>
             </ul>
-          </p>
+          </div>
         </Card.Text>
       </Card.Body>
     </Card>

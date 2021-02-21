@@ -10,19 +10,23 @@ class HomePage extends React.Component {
         this.state = {
             currentUser: authenticationService.currentUserValue,
             users: null,
+            clientes: []
         };
     }
 
     componentDidMount() {
-        userService.getAll().then(users => this.setState({ users }));
+        // userService.getAll().then(users => this.setState({ users }));
+        clienteService.getClientes().then(clientes => this.setState({clientes}))
     }
 
     render() {
-        const { currentUser, users } = this.state;
+        const { currentUser, users, clientes } = this.state;
         return (
             <div>
                 <h1>Clientes</h1>
-                <CardList style={{display: 'flex', flexDirection: 'row'}} clientes={clienteService.getClientes()} />
+                <div>
+                <CardList style={{display: 'flex', flexDirection: 'row'}} clientes={clientes} />
+                </div>
             </div>
         );
     }
